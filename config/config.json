@@ -1,0 +1,64 @@
+{
+  "certificates": [
+    {
+      "namePos": {
+        "x": 460,
+        "y": 700
+      },
+      "codePos": {
+        "x": 418,
+        "y": 1220
+      },
+      "name": "Магазин приложений",
+      "direct_link": "https://урокцифры.рф/uploads/certificates/f6054f3f4bee06ea768b7f54af51d079.jpg"
+    },
+    {
+      "namePos": {
+        "x": 460,
+        "y": 700
+      },
+      "codePos": {
+        "x": 418,
+        "y": 1220
+      },
+      "name": "Искусственный интеллект: промпт‑инжиниринг",
+      "direct_link": "https://урокцифры.рф/uploads/certificates/b3f2b676a62f1ad6f9159f6a7ed53d34.jpg"
+    },
+    {
+      "namePos": {
+        "x": 460,
+        "y": 700
+      },
+      "codePos": {
+        "x": 418,
+        "y": 1220
+      },
+      "name": "Технологии в интернет-торговле",
+      "direct_link": "https://урокцифры.рф/uploads/certificates/7d121465347c6e88439ae76fb80bf986.jpg"
+    },
+    {
+      "namePos": {
+        "x": 460,
+        "y": 700
+      },
+      "codePos": {
+        "x": 418,
+        "y": 1220
+      },
+      "name": "Технологии тестирования",
+      "direct_link": "https://урокцифры.рф/uploads/certificates/d737b5c0c06461840140d372872e2610.jpg"
+    },
+    {
+      "namePos": {
+        "x": 460,
+        "y": 700
+      },
+      "codePos": {
+        "x": 418,
+        "y": 1220
+      },
+      "name": "Кибербезопасность будущего",
+      "direct_link": "https://урокцифры.рф/uploads/certificates/37dea9a18dee24f2613c4f7d0e485762.jpg"
+    }
+  ]
+}
