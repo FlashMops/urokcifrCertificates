@@ -71,6 +71,18 @@
       },
       "name": "Код города: технологии в движении",
       "direct_link": "https://урокцифры.рф/uploads/certificates/f19c307fff59900c6eb3db70f3d9812d.jpg"
+    },
+    {
+      "namePos": {
+        "x": 460,
+        "y": 700
+      },
+      "codePos": {
+        "x": 418,
+        "y": 1220
+      },
+      "name": "Кибербезопасность и искусственный интеллект",
+      "direct_link": "https://урокцифры.рф/uploads/certificates/71bc039ba86b8d8f053dcfb424d40bb3.jpg"
     }
   ]
 }
