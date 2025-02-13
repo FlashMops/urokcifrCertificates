@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
@@ -28,18 +28,32 @@ public class UrokCifriCertificate
         DisplayCertificates(config);
         Certificate selectedCertificate = SelectCertificate(config);
 
-        Console.Write("Введите имя и фамилию для сертификата: ");
-        string nameSurname = Console.ReadLine();
+        Console.Write("Введите имя и фамилию или 'list' для загрузки из list.txt: ");
+        string input = Console.ReadLine();
+
+        List<string> names = new List<string>();
+
+        if (input.ToLower() == "list")
+        {
+            Console.WriteLine("Читаем имена из list.txt...");
+            names.AddRange(File.ReadAllLines("list.txt"));
+        }
+        else
+        {
+            names.Add(input);
+        }
 
         string templatePath = await DownloadTemplateAsync(selectedCertificate.direct_link);
 
-        string outputPath = Path.Combine(Directory.GetCurrentDirectory(), "out.jpg");
-
-        string code = GenerateRandomCode();
-
-        GenerateCertificate(templatePath, outputPath, nameSurname, code, selectedCertificate.namePos, selectedCertificate.codePos);
-
-        Console.WriteLine("Сертификат сохранен в папке с программой как out.jpg!");
+        foreach (string nameSurname in names)
+        {
+            if (string.IsNullOrWhiteSpace(nameSurname)) continue;
+            string sanitizedFileName = nameSurname.Replace(" ", "").Replace(".", "").Replace(",", "");
+            string outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"{sanitizedFileName}.jpg");
+            string code = GenerateRandomCode();
+            GenerateCertificate(templatePath, outputPath, nameSurname, code, selectedCertificate.namePos, selectedCertificate.codePos);
+            Console.WriteLine($"Сертификат для {nameSurname} сохранен как {sanitizedFileName}.jpg");
+        }
     }
 
     static async Task<Config> LoadConfigAsync(string url)
@@ -87,54 +101,35 @@ public class UrokCifriCertificate
     public static void GenerateCertificate(string templatePath, string outputPath, string nameSurname, string code, Position namePos, Position codePos)
     {
         using (Image template = Image.FromFile(templatePath))
+        using (Graphics graphics = Graphics.FromImage(template))
         {
-            using (Graphics graphics = Graphics.FromImage(template))
-            {
-                PrivateFontCollection nameFontCollection = new PrivateFontCollection();
-                PrivateFontCollection codeFontCollection = new PrivateFontCollection();
+            PrivateFontCollection fontCollection = new PrivateFontCollection();
+            AddFontFromResource(fontCollection, "UrokCifriCertificate.Fonts.DejaVuSans.ttf");
+            Font nameFont = new Font(fontCollection.Families[0], 26, FontStyle.Regular);
+            Font codeFont = new Font(fontCollection.Families[0], 15, FontStyle.Regular);
+            Brush textBrush = Brushes.Black;
 
-                AddFontFromResource(nameFontCollection, "UrokCifriCertificate.Fonts.DejaVuSans.ttf");
-                AddFontFromResource(codeFontCollection, "UrokCifriCertificate.Fonts.PrimaSansBT-Roman.otf");
+            PointF namePosition = new PointF(namePos.x - graphics.MeasureString(nameSurname, nameFont).Width / 2, namePos.y);
+            PointF codePosition = new PointF(codePos.x, codePos.y);
 
-                Font nameFont = new Font(nameFontCollection.Families[0], 26, FontStyle.Regular);
-                Font codeFont = new Font(codeFontCollection.Families[0], 15, FontStyle.Regular);
-                Brush textBrush = Brushes.Black;
-
-                PointF namePosition = new PointF(namePos.x, namePos.y);
-                PointF codePosition = new PointF(codePos.x, codePos.y);
-
-                SizeF nameSize = graphics.MeasureString(nameSurname, nameFont);
-                float centeredNameX = namePos.x - (nameSize.Width / 2);
-                namePosition = new PointF(centeredNameX, namePos.y);
-                //Console.WriteLine(namePos.x);
-
-                graphics.DrawString(nameSurname, nameFont, textBrush, namePosition);
-
-                graphics.DrawString(code, codeFont, textBrush, codePosition);
-            }
+            graphics.DrawString(nameSurname, nameFont, textBrush, namePosition);
+            graphics.DrawString(code, codeFont, textBrush, codePosition);
 
             template.Save(outputPath, ImageFormat.Jpeg);
         }
-
-        File.Delete(templatePath);
     }
-
 
     private static void AddFontFromResource(PrivateFontCollection fontCollection, string resourceName)
     {
         using (Stream fontStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
         {
-            if (fontStream == null)
-                throw new FileNotFoundException("Не удалось найти ресурс шрифта: " + resourceName);
+            if (fontStream == null) throw new FileNotFoundException("Не удалось найти ресурс шрифта: " + resourceName);
 
             byte[] fontData = new byte[fontStream.Length];
             fontStream.Read(fontData, 0, fontData.Length);
-
             IntPtr fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
             System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
-
             fontCollection.AddMemoryFont(fontPtr, fontData.Length);
-
             System.Runtime.InteropServices.Marshal.FreeCoTaskMem(fontPtr);
         }
     }
