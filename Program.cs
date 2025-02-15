@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
@@ -8,7 +9,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
 public class UrokCifriCertificate
 {
@@ -16,7 +16,7 @@ public class UrokCifriCertificate
     {
         string configUrl = "https://raw.githubusercontent.com/FlashMops/urokcifrCertificates/refs/heads/main/config/config.json";
 
-        Console.WriteLine("Загружаем конфигурацию...");
+        //Console.WriteLine("Загружаем конфигурацию...");
         Config config = await LoadConfigAsync(configUrl);
 
         if (config?.certificates == null || config.certificates.Count == 0)
@@ -27,6 +27,7 @@ public class UrokCifriCertificate
 
         DisplayCertificates(config);
         Certificate selectedCertificate = SelectCertificate(config);
+        Random random = new Random();
 
         Console.Write("Введите имя и фамилию или 'list' для загрузки из list.txt: ");
         string input = Console.ReadLine();
@@ -43,14 +44,17 @@ public class UrokCifriCertificate
             names.Add(input);
         }
 
-        string templatePath = await DownloadTemplateAsync(selectedCertificate.direct_link);
-
         foreach (string nameSurname in names)
         {
             if (string.IsNullOrWhiteSpace(nameSurname)) continue;
+
+            string templateUrl = selectedCertificate.direct_links[random.Next(selectedCertificate.direct_links.Count)];
+            string templatePath = await DownloadTemplateAsync(templateUrl);
+
             string sanitizedFileName = nameSurname.Replace(" ", "").Replace(".", "").Replace(",", "");
             string outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"{sanitizedFileName}.jpg");
             string code = GenerateRandomCode();
+
             GenerateCertificate(templatePath, outputPath, nameSurname, code, selectedCertificate.namePos, selectedCertificate.codePos);
             Console.WriteLine($"Сертификат для {nameSurname} сохранен как {sanitizedFileName}.jpg");
         }
@@ -58,10 +62,22 @@ public class UrokCifriCertificate
 
     static async Task<Config> LoadConfigAsync(string url)
     {
-        using (HttpClient client = new HttpClient())
+        string localConfigPath = "config.json";
+
+        if (File.Exists(localConfigPath))
         {
-            var json = await client.GetStringAsync(url);
+            Console.WriteLine("Загружаем конфигурацию из локального файла...");
+            string json = File.ReadAllText(localConfigPath);
             return JsonConvert.DeserializeObject<Config>(json);
+        }
+        else
+        {
+            Console.WriteLine("Локальный config.json не найден, загружаем с GitHub...");
+            using (HttpClient client = new HttpClient())
+            {
+                string json = await client.GetStringAsync(url);
+                return JsonConvert.DeserializeObject<Config>(json);
+            }
         }
     }
 
@@ -117,6 +133,7 @@ public class UrokCifriCertificate
 
             template.Save(outputPath, ImageFormat.Jpeg);
         }
+        File.Delete(templatePath);
     }
 
     private static void AddFontFromResource(PrivateFontCollection fontCollection, string resourceName)
@@ -161,7 +178,7 @@ public class Certificate
     public Position namePos { get; set; }
     public Position codePos { get; set; }
     public string name { get; set; }
-    public string direct_link { get; set; }
+    public List<string> direct_links { get; set; }
 }
 
 public class Config
