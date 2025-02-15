@@ -1,100 +1,71 @@
 {
   "certificates": [
     {
-      "namePos": {
-        "x": 460,
-        "y": 700
-      },
-      "codePos": {
-        "x": 418,
-        "y": 1220
-      },
+      "namePos": { "x": 460, "y": 700 },
+      "codePos": { "x": 418, "y": 1220 },
       "name": "Магазин приложений",
-      "direct_link": "https://урокцифры.рф/uploads/certificates/f6054f3f4bee06ea768b7f54af51d079.jpg"
+      "direct_link": [
+        "https://урокцифры.рф/uploads/certificates/f6054f3f4bee06ea768b7f54af51d079.jpg"
+      ]
     },
     {
-      "namePos": {
-        "x": 460,
-        "y": 700
-      },
-      "codePos": {
-        "x": 418,
-        "y": 1220
-      },
+      "namePos": { "x": 460, "y": 700 },
+      "codePos": { "x": 418, "y": 1220 },
       "name": "Искусственный интеллект: промпт‑инжиниринг",
-      "direct_link": "https://урокцифры.рф/uploads/certificates/b3f2b676a62f1ad6f9159f6a7ed53d34.jpg"
+      "direct_link": [
+        "https://урокцифры.рф/uploads/certificates/b3f2b676a62f1ad6f9159f6a7ed53d34.jpg"
+      ]
     },
     {
-      "namePos": {
-        "x": 460,
-        "y": 700
-      },
-      "codePos": {
-        "x": 418,
-        "y": 1220
-      },
+      "namePos": { "x": 460, "y": 700 },
+      "codePos": { "x": 418, "y": 1220 },
       "name": "Технологии в интернет-торговле",
-      "direct_link": "https://урокцифры.рф/uploads/certificates/7d121465347c6e88439ae76fb80bf986.jpg"
+      "direct_link": [
+        "https://урокцифры.рф/uploads/certificates/7d121465347c6e88439ae76fb80bf986.jpg"
+      ]
     },
     {
-      "namePos": {
-        "x": 460,
-        "y": 700
-      },
-      "codePos": {
-        "x": 418,
-        "y": 1220
-      },
+      "namePos": { "x": 460, "y": 700 },
+      "codePos": { "x": 418, "y": 1220 },
       "name": "Технологии тестирования",
-      "direct_link": "https://урокцифры.рф/uploads/certificates/d737b5c0c06461840140d372872e2610.jpg"
+      "direct_link": [
+        "https://урокцифры.рф/uploads/certificates/d737b5c0c06461840140d372872e2610.jpg"
+      ]
     },
     {
-      "namePos": {
-        "x": 460,
-        "y": 700
-      },
-      "codePos": {
-        "x": 418,
-        "y": 1220
-      },
+      "namePos": { "x": 460, "y": 700 },
+      "codePos": { "x": 418, "y": 1220 },
       "name": "Кибербезопасность будущего",
-      "direct_link": "https://урокцифры.рф/uploads/certificates/37dea9a18dee24f2613c4f7d0e485762.jpg"
+      "direct_link": [
+        "https://урокцифры.рф/uploads/certificates/37dea9a18dee24f2613c4f7d0e485762.jpg"
+      ]
     },
     {
-      "namePos": {
-        "x": 460,
-        "y": 700
-      },
-      "codePos": {
-        "x": 418,
-        "y": 1220
-      },
+      "namePos": { "x": 460, "y": 700 },
+      "codePos": { "x": 418, "y": 1220 },
       "name": "Код города: технологии в движении",
-      "direct_link": "https://урокцифры.рф/uploads/certificates/f19c307fff59900c6eb3db70f3d9812d.jpg"
+      "direct_link": [
+        "https://урокцифры.рф/uploads/certificates/f19c307fff59900c6eb3db70f3d9812d.jpg"
+      ]
     },
     {
-      "namePos": {
-        "x": 460,
-        "y": 700
-      },
-      "codePos": {
-        "x": 418,
-        "y": 1220
-      },
+      "namePos": { "x": 460, "y": 700 },
+      "codePos": { "x": 418, "y": 1220 },
       "name": "Кибербезопасность и искусственный интеллект",
-      "direct_link": "https://урокцифры.рф/uploads/certificates/71bc039ba86b8d8f053dcfb424d40bb3.jpg"
+      "direct_link": [
+        "https://урокцифры.рф/uploads/certificates/71bc039ba86b8d8f053dcfb424d40bb3.jpg"
+      ]
     },
-        {
-      "namePos": {
-        "x": 460,
-        "y": 700
-      },
-      "codePos": {
-        "x": 418,
-        "y": 1220
-      },
+    {
+      "namePos": { "x": 460, "y": 700 },
+      "codePos": { "x": 418, "y": 1220 },
       "name": "Секреты операционных систем",
-      "direct_link": "https://урокцифры.рф/uploads/certificates/9f9af25989c9e701280238f325bb33dd.jpg"
+      "direct_link": [
+        "https://урокцифры.рф/uploads/certificates/0de5d0865e3e09e454ba2b8f6a79e08c.jpg",
+        "https://урокцифры.рф/uploads/certificates/9f9af25989c9e701280238f325bb33dd.jpg",
+        "https://урокцифры.рф/uploads/certificates/58e21399e596d81aa436f954ea2441f0.jpg",
+        "https://урокцифры.рф/uploads/certificates/93d3f34b751da842ef49834699e4f488.jpg"
+      ]
     }
   ]
 }
