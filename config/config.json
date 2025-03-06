@@ -66,6 +66,16 @@
         "https://урокцифры.рф/uploads/certificates/58e21399e596d81aa436f954ea2441f0.jpg",
         "https://урокцифры.рф/uploads/certificates/93d3f34b751da842ef49834699e4f488.jpg"
       ]
+    },
+    {
+      "namePos": { "x": 460, "y": 700 },
+      "codePos": { "x": 418, "y": 1220 },
+      "name": "Технологии современного программирования",
+      "direct_links": [
+        "https://урокцифры.рф/uploads/certificates/b1349e04bba26af6ef29f6df54555b34.jpg",
+        "https://урокцифры.рф/uploads/certificates/c89c203c188d1bf3d13d59b767026d1c.jpg",
+        "https://урокцифры.рф/uploads/certificates/66bc2b5195ddfe2133857aa4e34144d1.jpg"
+      ]
     }
   ]
 }
